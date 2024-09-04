@@ -2,6 +2,10 @@ import random
 
 possible_actions = ["Rock", "Paper", "Scissors"]
 
+def create_player():
+    player_name = input("Enter your name: ")
+    return player_name
+
 def get_user_selection():
     while True:
         user_action = input("Enter a choice (Rock, Paper or Scissors):\n").lower().capitalize()
@@ -43,7 +47,9 @@ def play_again():
             else:
                 print("Please enter 'yes', 'y' or 'no', 'n'")
 
-def main_game():
+
+
+def main_game(player_name):
     while True:
         user_action = get_user_selection()
         computer_action = get_computer_selection()
@@ -54,7 +60,22 @@ def main_game():
         print(result)
 
         if not play_again():
-            print("Thanks for playing! Goodbye.")
-            exit()
+            print(f"Thanks for playing {player_name}! Goodbye.\n")
+            break
 
-main_game()
+def menu():
+    while True:
+        print("Welcome to a game of Rock, Paper, Sicssor!\n1. Start game\n2. End game")
+        
+        choice = input("Select your option between 1 and 2.\n")
+
+        if choice == "1":
+            player_name = create_player()
+            main_game(player_name)
+        elif choice == "2":
+            print("Thanks for playing! Exiting game.")
+            exit()
+        else:
+            print("Invalid choice. Please select either 1 or 2.")
+
+menu()
